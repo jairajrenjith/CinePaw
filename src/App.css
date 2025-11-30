@@ -1,5 +1,3 @@
-/* CinePaw/src/App.css - FINAL FIXED 3-COLUMN LAYOUT */
-
 .app {
   padding: 2rem;
   max-width: 1400px; 
@@ -22,24 +20,29 @@
   font-weight: 900;
 }
 
-.search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem auto;
-  width: 90%;
-  max-width: 700px;
-  border: 2px solid #2d3748;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: border-color 0.3s;
+.search-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem auto;
+    width: 90%;
+    max-width: 700px;
 }
 
-.search:focus-within {
+.search-main {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 2px solid #2d3748;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.search-main:focus-within {
     border-color: #2196F3;
 }
 
-.search input {
+.search-main input {
   padding: 1rem 1.5rem;
   width: 75%;
   border: none;
@@ -49,7 +52,7 @@
   outline: none;
 }
 
-.search button {
+.search-main button {
   padding: 1rem 1.5rem;
   width: 25%;
   background-color: #2196F3;
@@ -59,18 +62,52 @@
   transition: background-color 0.2s, opacity 0.2s;
 }
 
-.search button:hover:not(:disabled) {
+.search-main button:hover:not(:disabled) {
   background-color: #1976D2;
 }
 
-.search button:active:not(:disabled) {
+.search-main button:active:not(:disabled) {
   transform: translateY(1px);
 }
 
-.search button:disabled {
+.search-main button:disabled {
   cursor: not-allowed;
   background-color: #374151;
   opacity: 0.7;
+}
+
+.search-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 700px; 
+    padding-top: 10px;
+}
+
+.filter-input, .filter-select {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #2d3748;
+    background-color: #161b22;
+    color: #f3f4f6;
+    font-size: 1rem;
+    appearance: none;
+    cursor: pointer;
+    width: calc(33.33% - 10px); 
+    max-width: 160px;
+    box-sizing: border-box;
+}
+
+.filter-select {
+    padding-right: 20px;
+}
+
+.filter-info {
+    color: #5d6d7e;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
 }
 
 .status-message {
@@ -84,10 +121,19 @@
     color: #ef4444; 
     font-weight: 500;
     padding: 1rem;
-    border: 1px dashed #ef4444;
+    border: 1px dashed #ef4444; 
     max-width: 500px;
     margin: 3rem auto;
     border-radius: 8px;
+    background-color: #161b22; 
+}
+
+.error-message h4 {
+    font-size: 1.4rem; 
+    color: #ef4444; 
+    margin: 0; 
+    padding: 0; 
+    line-height: 1.6;
 }
 
 .container {
@@ -105,10 +151,11 @@
   background-color: #161b22;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
+  overflow: hidden; 
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  min-height: 550px;
+  
+  min-height: 480px; 
   display: flex;
   flex-direction: column;
   border: 1px solid transparent;
@@ -121,28 +168,34 @@
 }
 
 .card-image {
-  height: 350px;
-  overflow: hidden;
+  aspect-ratio: 2 / 3; 
+  max-height: 350px; 
+  overflow: hidden; 
   position: relative; 
+  flex-shrink: 0; 
+  
+  background-color: #161b22; 
 }
 
 .no-image-placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
     width: 100%;
-    background-color: #2d3748; 
     color: #9ca3af;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-align: center;
+    
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #161b22;
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; 
+  object-position: center; 
   transition: opacity 0.3s, transform 0.5s;
 }
 
@@ -151,22 +204,42 @@
 }
 
 .card-info {
-  padding: 1rem;
+  padding: 0.8rem; 
   text-align: left;
-  flex-grow: 1;
+  
+  flex-grow: 1; 
+  flex-shrink: 1; 
+  min-height: 0; 
+  
+  overflow-y: hidden; 
+  overflow-x: hidden; 
+  
   border-top: 1px solid #2d3748;
 }
 
+.card-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3px;
+}
+
+.movie-rating-text {
+    color: #f3f4f6; 
+    font-size: 0.8rem; 
+    font-weight: 500;
+}
+
 .movie-type {
-  font-size: 0.8rem;
+  font-size: 0.75rem; 
   color: #818cf8;
   text-transform: uppercase;
   font-weight: 600;
 }
 
 .movie-title {
-  font-size: 1.4rem;
-  margin: 0.2rem 0;
+  font-size: 1.2rem; 
+  margin: 0.1rem 0;
   color: #f3f4f6;
   white-space: nowrap;
   overflow: hidden;
@@ -174,16 +247,46 @@
   line-height: 1.2;
 }
 
-.movie-year {
-  font-size: 0.9rem;
-  color: #9ca3af;
+.card-metadata-fixed-height {
+    display: block; 
+}
+
+.movie-released-date {
+    font-size: 0.85rem; 
+    color: #9ca3af;
+    margin-top: -2px; 
+    margin-bottom: 4px; 
+}
+
+
+.card-genre-runtime {
+    margin-top: 4px;
+    font-size: 0.8rem; 
+    color: #9ca3af;
+    display: flex;
+    gap: 8px;
+}
+
+.movie-imdb-rating {
+    font-size: 0.9rem; 
+    color: #fce300; 
+    font-weight: 600;
+    margin-top: 8px;
+}
+
+.movie-language {
+    font-size: 0.8rem; 
+    color: #9ca3af;
+    margin-top: 4px;
+    margin-bottom: 0 !important; 
 }
 
 .movie-plot {
-    font-size: 0.95rem;
-    color: #c9d1d9;
-    margin-top: 0.5rem;
+    font-size: 0.85rem; 
     line-height: 1.3;
+    color: #c9d1d9;
+    margin-top: 4px;
+    padding-right: 5px; 
 }
 
 .modal-overlay {
@@ -198,6 +301,8 @@
     align-items: center;
     z-index: 1000;
     backdrop-filter: blur(5px);
+    
+    overflow-y: auto; 
 }
 
 .modal-content {
@@ -211,6 +316,9 @@
     color: #f3f4f6;
     animation: fadeIn 0.3s ease-out;
     border: 1px solid #2d3748;
+    
+    max-height: 90vh; 
+    overflow-y: auto; 
 }
 
 .modal-close-btn {
@@ -233,6 +341,7 @@
     display: flex;
     gap: 30px;
     text-align: left;
+    align-items: center; 
 }
 
 .modal-poster-container {
@@ -247,10 +356,21 @@
     width: 100%;
     height: auto;
     display: block;
+    object-fit: cover; 
+    object-position: center;
 }
 
 .modal-placeholder {
-    height: 450px;
+    height: 450px; 
+    width: 100%; 
+    background-color: #2d3748; 
+    color: #9ca3af;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-align: center;
 }
 
 .modal-info {
@@ -258,28 +378,75 @@
 }
 
 .modal-title {
-    font-size: 2.5rem;
+    font-size: 2rem; 
     color: #2196F3;
     margin-top: 0;
     margin-bottom: 0.5rem;
     line-height: 1.1;
 }
 
-.modal-meta {
-    margin-bottom: 1.5rem;
+.modal-release-date {
     font-size: 1.1rem;
+    color: #f3f4f6;
+    margin-top: -0.2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 300;
 }
 
-.modal-type {
-    color: #818cf8;
-    text-transform: uppercase;
+
+.modal-sub-meta {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem; 
+}
+
+.detail-genre, .detail-runtime, .detail-rating-text, .detail-imdb, .detail-language {
+    margin-right: 10px;
+    font-size: 0.9rem; 
+    display: inline-block;
+}
+
+.detail-imdb {
+    color: #fce300; 
+    font-weight: 600;
+}
+
+.detail-rating-text {
+    color: #fff;
+}
+
+.section-title {
+    font-size: 1.1rem; 
+    color: #2196F3;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #2d3748;
+    padding-bottom: 3px;
+}
+
+.personnel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem; 
+    color: #c9d1d9;
+}
+
+.personnel-list li {
+    margin-bottom: 5px;
+}
+
+.detail-cast {
+    font-size: 0.9rem; 
+    color: #c9d1d9;
+    margin-top: 5px;
 }
 
 .modal-plot-full {
-    font-size: 1.1rem;
+    font-size: 0.95rem; 
     line-height: 1.6;
     color: #c9d1d9;
 }
+
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
@@ -287,10 +454,15 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
     .modal-content {
         padding: 20px;
         max-width: 95%;
-        margin: 20px;
+        margin: 20px 10px; 
     }
     .modal-details {
         flex-direction: column;
@@ -305,29 +477,13 @@
     .modal-title {
         font-size: 1.8rem;
     }
-}
-
-.movie-rating {
-    display: inline-block;
-    background-color: #ef4444;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 10px;
-    vertical-align: middle;
-    letter-spacing: 0.5px;
-}
-
-.modal-rating-badge {
-    display: inline-block;
-    background-color: #ef4444;
-    color: white;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 6px;
-    margin-right: 15px;
-    letter-spacing: 1px;
+    .search-filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .filter-input, .filter-select {
+        width: 100%;
+        max-width: 300px;
+    }
 }
