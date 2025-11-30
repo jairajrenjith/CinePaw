@@ -4,7 +4,7 @@ import MovieDetailsModal from './components/MovieDetailsModal';
 import './App.css';
 
 const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
-const API_BASE_URL = `http://www.omdbapi.com/?apikey=${API_KEY}`;
+const API_BASE_URL = `https://www.omdbapi.com/?apikey=${API_KEY}`;
 
 const fetchMovieDetails = async (imdbID) => {
     try {
@@ -47,8 +47,8 @@ function App() {
     setMovies([]);
 
     try {
-      if (!API_KEY || API_KEY === '[YOUR_OMDB_API_KEY]') {
-          throw new Error("API Key not configured. Please check your .env file.");
+      if (!API_KEY || API_KEY === 'REPLACE_ME') {
+          throw new Error("API Key not configured. Please set it in Vercel Environment Variables.");
       }
 
       const searchResponse = await fetch(`${API_BASE_URL}&s=${title}`);
