@@ -17,13 +17,39 @@ const MovieCard = ({ movie, onMovieClick }) => {
         )}
       </div>
       <div className="card-info">
-        <span className="movie-type">{movie.Type}</span>
-        {movie.Rated && movie.Rated !== 'N/A' && (
-             <span className="movie-rating">{movie.Rated}</span>
-        )}
+        <div className="card-meta-row">
+            <span className="movie-type">{movie.Type}</span>
+            {movie.Rated && movie.Rated !== 'N/A' && (
+                 <span className="movie-rating-text">Rated: {movie.Rated}</span>
+            )}
+        </div>
+        
         <h3 className="movie-title">{movie.Title}</h3>
         <p className="movie-year">({movie.Year})</p>
-        <p className="movie-plot">{movie.Plot || 'No plot description available.'}</p>
+        
+        <div className="card-metadata-fixed-height">
+            {movie.Released && movie.Released !== 'N/A' && (
+                <p className="movie-released-date">Released: {movie.Released}</p>
+            )}
+
+            <div className="card-genre-runtime">
+                {movie.Genre && movie.Genre !== 'N/A' && (
+                    <span className="movie-genre">{movie.Genre.split(',')[0]}</span>
+                )}
+                {movie.Runtime && movie.Runtime !== 'N/A' && (
+                    <span className="movie-runtime">{movie.Runtime}</span>
+                )}
+            </div>
+
+            {movie.imdbRating && movie.imdbRating !== 'N/A' && (
+                <p className="movie-imdb-rating">IMDb: {movie.imdbRating} / 10</p>
+            )}
+            
+            {movie.Language && movie.Language !== 'N/A' && (
+                <p className="movie-language">Language: {movie.Language.split(',')[0]}</p>
+            )}
+        </div>
+        
       </div>
     </div>
   );
