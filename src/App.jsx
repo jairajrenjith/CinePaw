@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import MovieCard from './components/MovieCard';
-import MovieDetailsModal from './components/MovieDetailsModal'; 
+import MovieGrid from './components/MovieGrid';
+import MovieDetailsModal from './components/MovieDetailsModal';
 import './App.css';
 
 const API_KEY = import.meta.env.VITE_OMDB_API_KEY;
@@ -164,15 +164,10 @@ function App() {
       {error && <div className="status-message error-message">❌ {error}</div>}
       
       {!loading && !error && movies.length > 0 && (
-        <div className="container">
-          {movies.map((movie) => (
-            <MovieCard 
-              key={movie.imdbID} 
-              movie={movie} 
-              onMovieClick={handleCardClick} 
-            />
-          ))}
-        </div>
+          <MovieGrid 
+            movies={movies} 
+            onMovieClick={handleCardClick} 
+          />
       )}
       
       {!loading && !error && movies.length === 0 && hasSearched && (
